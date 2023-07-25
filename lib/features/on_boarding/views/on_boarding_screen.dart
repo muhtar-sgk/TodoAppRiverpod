@@ -14,7 +14,15 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset(ImageRes.todo),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Image.asset(ImageRes.todo)
+          )
+        ]
+      ),
     );
   }
 }
