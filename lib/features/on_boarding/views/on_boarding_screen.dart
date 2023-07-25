@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
 
 // OnboardingScreen
-  // Imaga
-  // Title
-  // Sub Title
-  // Skip Button
-  // Swipe Indicator
+// Imaga
+// Title
+// Sub Title
+// Skip Button
+// Swipe Indicator
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -14,14 +14,23 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Image.asset(ImageRes.todo)
-          )
-        ]
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Image.asset(ImageRes.todo),
+            const Text(
+              'Todo with Riverpod',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+            ),
+            const Text(
+              'Welcome in Todo with Riverpod, you can create and clear note super fast',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            )
+          ]),
+        ),
       ),
     );
   }
