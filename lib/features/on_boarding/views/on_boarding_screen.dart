@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_todoapp/core/res/image_res.dart';
 
 // OnboardingScreen
   // Imaga
@@ -13,7 +14,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Image.asset(ImageRes.todo),
     );
   }
 }
