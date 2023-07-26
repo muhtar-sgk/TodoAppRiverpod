@@ -23,56 +23,74 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colours.darkBackground,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30).copyWith(
-            bottom: 20
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, 
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+          PageView(
             children: [
-              Expanded(child: SizedBox()),
-              Image.asset(ImageRes.todo),
-              const WhiteSpace(height: 80),
-              const FadingText(
-                'Todo with Riverpod',
-                textAlign: TextAlign.center,
-                fontSize: 30, 
-                fontWeight: FontWeight.w500
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(ImageRes.todo),
+                      const WhiteSpace(height: 80),
+                      const FadingText('Todo with Riverpod',
+                          textAlign: TextAlign.center,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500),
+                      const WhiteSpace(height: 8),
+                      Text(
+                        'Welcome in Todo with Riverpod, you can create and clear note super fast',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colours.lightGrey),
+                      ),
+                    ]),
               ),
-              const WhiteSpace(height: 8),
-              Text(
-                'Welcome in Todo with Riverpod, you can create and clear note super fast',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: Colours.lightGrey
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(ImageRes.todo),
+                      const WhiteSpace(height: 80),
+                      const FadingText('Todo with Riverpod',
+                          textAlign: TextAlign.center,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500),
+                      const WhiteSpace(height: 8),
+                      Text(
+                        'Welcome in Todo with Riverpod, you can create and clear note super fast',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colours.lightGrey),
+                      ),
+                    ]),
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          iconSize: 28,
-                          color: Colours.light,
-                          onPressed: (){}, 
-                          icon: Icon(Ionicons.chevron_forward_circle)
-                        ),
-                        const FadingText(
-                          'Skip', 
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              )
-          ]),
-        ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                      iconSize: 28,
+                      color: Colours.light,
+                      onPressed: () {},
+                      icon: Icon(Ionicons.chevron_forward_circle)),
+                  const FadingText('Skip',
+                      fontSize: 16, fontWeight: FontWeight.w500)
+                ],
+              ),
+            ],
+          )
+        ]),
       ),
     );
   }
