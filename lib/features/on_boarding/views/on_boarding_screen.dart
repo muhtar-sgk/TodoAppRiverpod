@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
+import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
 
 // OnboardingScreen
@@ -17,6 +18,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.darkBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -28,7 +30,8 @@ class OnBoardingScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 30, 
-                fontWeight: FontWeight.w500
+                fontWeight: FontWeight.w500,
+                color: Colours.light
               ),
             ),
             const WhiteSpace(height: 8),
@@ -37,7 +40,8 @@ class OnBoardingScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                fontWeight: FontWeight.normal
+                fontWeight: FontWeight.normal,
+                color: Colours.lightGrey
               ),
             )
           ]),
