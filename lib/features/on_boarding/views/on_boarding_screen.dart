@@ -43,6 +43,12 @@ class OnBoardingScreen extends StatelessWidget {
                 fontWeight: FontWeight.normal,
                 color: Colours.lightGrey
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+              ],
             )
           ]),
         ),
