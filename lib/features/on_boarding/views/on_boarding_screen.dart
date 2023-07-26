@@ -45,18 +45,31 @@ class OnBoardingScreen extends StatelessWidget {
                 color: Colours.lightGrey
               ),
             ),
-            Container(
-              color: Colors.red,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: (){}, 
-                    icon: Icon(Ionicons.chevron_forward_circle)
-                  ),
-                  WhiteSpace(width: 8)
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      iconSize: 28,
+                      color: Colours.light,
+                      onPressed: (){}, 
+                      icon: Icon(Ionicons.chevron_forward_circle)
+                    ),
+                    Text(
+                      'Skip', 
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.fade,
+                      textAlign: TextAlign.left,
+                      style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colours.light
+                    ),)
+                  ],
+                ),
+              ],
             )
           ]),
         ),
