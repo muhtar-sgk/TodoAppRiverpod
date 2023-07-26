@@ -6,6 +6,8 @@ import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
 
+import '../../../core/common/widgets/fading_text.dart';
+
 // OnboardingScreen
 // Imaga
 // Title
@@ -22,55 +24,52 @@ class OnBoardingScreen extends StatelessWidget {
       backgroundColor: Colours.darkBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset(ImageRes.todo),
-            const WhiteSpace(height: 80),
-            Text(
-              'Todo with Riverpod',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
+          padding: const EdgeInsets.symmetric(horizontal: 30).copyWith(
+            bottom: 20
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
+              Spacer(),
+              Image.asset(ImageRes.todo),
+              const WhiteSpace(height: 80),
+              const FadingText(
+                'Todo with Riverpod',
+                textAlign: TextAlign.center,
                 fontSize: 30, 
-                fontWeight: FontWeight.w500,
-                color: Colours.light
+                fontWeight: FontWeight.w500
               ),
-            ),
-            const WhiteSpace(height: 8),
-            Text(
-              'Welcome in Todo with Riverpod, you can create and clear note super fast',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-                color: Colours.lightGrey
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      iconSize: 28,
-                      color: Colours.light,
-                      onPressed: (){}, 
-                      icon: Icon(Ionicons.chevron_forward_circle)
-                    ),
-                    Text(
-                      'Skip', 
-                      maxLines: 1,
-                      softWrap: false,
-                      overflow: TextOverflow.fade,
-                      textAlign: TextAlign.left,
-                      style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colours.light
-                    ),)
-                  ],
+              const WhiteSpace(height: 8),
+              Text(
+                'Welcome in Todo with Riverpod, you can create and clear note super fast',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colours.lightGrey
                 ),
-              ],
-            )
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        iconSize: 28,
+                        color: Colours.light,
+                        onPressed: (){}, 
+                        icon: Icon(Ionicons.chevron_forward_circle)
+                      ),
+                      const FadingText(
+                        'Skip', 
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500
+                      )
+                    ],
+                  ),
+                ],
+              )
           ]),
         ),
       ),
