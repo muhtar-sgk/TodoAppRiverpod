@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/common/widgets/fading_text.dart';
 
@@ -15,8 +16,21 @@ import '../../../core/common/widgets/fading_text.dart';
 // Skip Button
 // Swipe Indicator
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  final pageController = PageController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +41,7 @@ class OnBoardingScreen extends StatelessWidget {
           alignment: AlignmentDirectional.bottomCenter,
           children: [
           PageView(
+            controller: pageController,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -74,21 +89,33 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      iconSize: 28,
-                      color: Colours.light,
-                      onPressed: () {},
-                      icon: Icon(Ionicons.chevron_forward_circle)),
-                  const FadingText('Skip',
-                      fontSize: 16, fontWeight: FontWeight.w500)
-                ],
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        iconSize: 28,
+                        color: Colours.light,
+                        onPressed: () {},
+                        icon: Icon(Ionicons.chevron_forward_circle)),
+                    const FadingText('Skip',
+                        fontSize: 16, fontWeight: FontWeight.w500)
+                  ],
+                ),
+                SmoothPageIndicator(
+                  controller: pageController, 
+                  count: 2,
+                  effect: WormEffect(
+                    dotHeight: 12,
+                    spacing: 10,
+                    dotColor: Colours.yellow.withOpacity(.5)
+                  ),
+                )
+              ],
+            ),
           )
         ]),
       ),
