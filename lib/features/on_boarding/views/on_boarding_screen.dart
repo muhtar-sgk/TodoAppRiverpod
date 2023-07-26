@@ -30,7 +30,7 @@ class OnBoardingScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, 
             children: [
-              Spacer(),
+              Expanded(child: SizedBox()),
               Image.asset(ImageRes.todo),
               const WhiteSpace(height: 80),
               const FadingText(
@@ -49,26 +49,27 @@ class OnBoardingScreen extends StatelessWidget {
                   color: Colours.lightGrey
                 ),
               ),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        iconSize: 28,
-                        color: Colours.light,
-                        onPressed: (){}, 
-                        icon: Icon(Ionicons.chevron_forward_circle)
-                      ),
-                      const FadingText(
-                        'Skip', 
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500
-                      )
-                    ],
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          iconSize: 28,
+                          color: Colours.light,
+                          onPressed: (){}, 
+                          icon: Icon(Ionicons.chevron_forward_circle)
+                        ),
+                        const FadingText(
+                          'Skip', 
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               )
           ]),
         ),
