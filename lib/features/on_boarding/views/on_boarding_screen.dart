@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:riverpod_todoapp/features/on_boarding/views/widgets/first_page.dart';
+import 'package:riverpod_todoapp/features/on_boarding/views/widgets/second_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/common/widgets/fading_text.dart';
@@ -42,51 +44,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
           PageView(
             controller: pageController,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(ImageRes.todo),
-                      const WhiteSpace(height: 80),
-                      const FadingText('Todo with Riverpod',
-                          textAlign: TextAlign.center,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500),
-                      const WhiteSpace(height: 8),
-                      Text(
-                        'Welcome in Todo with Riverpod, you can create and clear note super fast',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colours.lightGrey),
-                      ),
-                    ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(ImageRes.todo),
-                      const WhiteSpace(height: 80),
-                      const FadingText('Todo with Riverpod',
-                          textAlign: TextAlign.center,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500),
-                      const WhiteSpace(height: 8),
-                      Text(
-                        'Welcome in Todo with Riverpod, you can create and clear note super fast',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colours.lightGrey),
-                      ),
-                    ]),
-              ),
+            children: const [
+              FirstPage(),
+              SecondPage()
             ],
           ),
           Padding(
@@ -111,7 +71,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   effect: WormEffect(
                     dotHeight: 12,
                     spacing: 10,
-                    dotColor: Colours.yellow.withOpacity(.5)
+                    dotColor: Colours.yellow.withOpacity(.5),
+                    activeDotColor: Colours.light
                   ),
                 )
               ],
