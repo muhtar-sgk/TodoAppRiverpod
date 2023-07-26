@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
@@ -44,11 +45,18 @@ class OnBoardingScreen extends StatelessWidget {
                 color: Colours.lightGrey
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-              ],
+            Container(
+              color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: (){}, 
+                    icon: Icon(Ionicons.chevron_forward_circle)
+                  ),
+                  WhiteSpace(width: 8)
+                ],
+              ),
             )
           ]),
         ),
