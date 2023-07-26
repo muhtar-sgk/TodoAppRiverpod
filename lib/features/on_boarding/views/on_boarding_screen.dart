@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
 
 // OnboardingScreen
@@ -20,17 +22,23 @@ class OnBoardingScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image.asset(ImageRes.todo),
-            SizedBox(height: 100.h),
-            const Text(
+            const WhiteSpace(height: 80),
+            Text(
               'Todo with Riverpod',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(
+                fontSize: 30, 
+                fontWeight: FontWeight.w500
+              ),
             ),
-            SizedBox(height: 10.h),
-            const Text(
+            const WhiteSpace(height: 8),
+            Text(
               'Welcome in Todo with Riverpod, you can create and clear note super fast',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.normal
+              ),
             )
           ]),
         ),
