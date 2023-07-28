@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "665498198270",
+    "project_id": "todo-app-83857",
+    "storage_bucket": "todo-app-83857.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665498198270:android:bff85642d703d2659a05af",
+        "android_client_info": {
+          "package_name": "com.example.riverpod_todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665498198270-j803mjad0u6pqi2b449q1nqnij32r3a7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRPg7rXSswHxsMemtlKr6KavDGauM6At4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665498198270-j803mjad0u6pqi2b449q1nqnij32r3a7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "665498198270-o728v17svrtle2fdvss5l94toovo5eoo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.riverpodTodoapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
