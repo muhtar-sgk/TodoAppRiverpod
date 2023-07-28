@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           title: 'Todo App',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
               scaffoldBackgroundColor: Colours.darkBackground,
               useMaterial3: true),
           home: const OnBoardingScreen(),
