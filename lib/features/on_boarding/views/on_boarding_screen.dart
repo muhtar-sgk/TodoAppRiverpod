@@ -39,48 +39,45 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       backgroundColor: Colours.darkBackground,
       body: SafeArea(
-        child: Stack(
-          alignment: AlignmentDirectional.bottomCenter,
-          children: [
+        child: Stack(alignment: AlignmentDirectional.bottomCenter, children: [
           PageView(
             controller: pageController,
-            children: const [
-              FirstPage(),
-              SecondPage()
-            ],
+            children: const [FirstPage(), SecondPage()],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(
+              bottom: 20
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                        iconSize: 28,
-                        color: Colours.light,
-                        onPressed: () {
-                          pageController.nextPage(
-                            duration: const Duration(milliseconds: 300), 
-                            curve: Curves.easeInOut
-                          );
-                        },
-                        icon: Icon(Ionicons.chevron_forward_circle)),
-                    const FadingText('Skip',
-                        fontSize: 16, 
+                GestureDetector(
+                  onTap: () {
+                    pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(Ionicons.chevron_forward_circle, 
+                      color: Colours.light),
+                      WhiteSpace(width: 5),
+                      FadingText(
+                        'Skip',
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )
-                  ],
+                    ],
+                  ),
                 ),
                 SmoothPageIndicator(
-                  controller: pageController, 
+                  controller: pageController,
                   count: 2,
                   effect: WormEffect(
-                    dotHeight: 12,
-                    spacing: 10,
-                    dotColor: Colours.yellow.withOpacity(.5),
-                    activeDotColor: Colours.light
-                  ),
+                      dotHeight: 12,
+                      spacing: 10,
+                      dotColor: Colours.yellow.withOpacity(.5),
+                      activeDotColor: Colours.light),
                 )
               ],
             ),
