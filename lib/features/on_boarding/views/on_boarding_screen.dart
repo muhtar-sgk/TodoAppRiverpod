@@ -59,10 +59,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     IconButton(
                         iconSize: 28,
                         color: Colours.light,
-                        onPressed: () {},
+                        onPressed: () {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 300), 
+                            curve: Curves.easeInOut
+                          );
+                        },
                         icon: Icon(Ionicons.chevron_forward_circle)),
                     const FadingText('Skip',
-                        fontSize: 16, fontWeight: FontWeight.w500)
+                        fontSize: 16, 
+                        fontWeight: FontWeight.w500,
+                      )
                   ],
                 ),
                 SmoothPageIndicator(
