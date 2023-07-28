@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
+import 'package:riverpod_todoapp/features/authentication/views/sign_in_screen.dart';
 
 import '../../../../core/common/widgets/white_space.dart';
 import '../../../../core/res/image_res.dart';
@@ -17,8 +18,12 @@ class SecondPage extends StatelessWidget {
         Image.asset(ImageRes.todo),
         const WhiteSpace(height: 50),
         RoundButton(
-          text: 'Login with Phone',
-          onPressed: (){}
+          text: 'Login with phone',
+          onPressed: (){
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (_) => const SignInScreen()));
+          }
         )
       ]),
     );

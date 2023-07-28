@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:riverpod_todoapp/core/res/colours.dart';
 
 import 'features/on_boarding/views/on_boarding_screen.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              scaffoldBackgroundColor: Colours.darkBackground,
               useMaterial3: true),
           home: const OnBoardingScreen(),
         );
