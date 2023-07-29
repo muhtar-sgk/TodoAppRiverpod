@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "665498198270-092akn2t1n2eps8cqvv4omnf87blaid9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.riverpod_todoapp",
+            "certificate_hash": "d9848e674391804e0c954b05ac33d4d354a679bb"
+          }
+        },
+        {
           "client_id": "665498198270-j803mjad0u6pqi2b449q1nqnij32r3a7.apps.googleusercontent.com",
           "client_type": 3
         }
