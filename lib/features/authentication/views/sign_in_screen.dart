@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:riverpod_todoapp/features/authentication/controller/authentication_controller.dart';
 import 'package:riverpod_todoapp/features/authentication/views/otp_verification_screen.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -57,10 +59,6 @@ class SignInScreen extends StatelessWidget {
               RoundButton(
                 text: 'Send code',
                 onPressed: (){
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (_) => const OTPVerificationScreen())
-                  );
                 },
               )
             ],

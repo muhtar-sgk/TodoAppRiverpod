@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_todoapp/core/utils/core_utils.dart';
 
 class AuthenticationRepository {
   final FirebaseAuth auth;
@@ -18,9 +19,9 @@ class AuthenticationRepository {
         auth.signInWithCredential(credential);
       }, 
       verificationFailed: (exception){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('${exception.code}: ${exception.message}')
-          )
+        CoreUtils.showSnackBar(
+          context: context, 
+          message: '${exception.credential}: ${exception.message}'
         );
       }, 
       codeSent: (verificationId, _){}, 
