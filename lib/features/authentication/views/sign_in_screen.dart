@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,6 +48,44 @@ class SignInScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colours.light,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 14),
+                    child: GestureDetector(
+                      onTap: (){
+                        showCountryPicker(
+                          context: context, 
+                          onSelect: (code){},
+                          countryListTheme: CountryListThemeData(
+                            backgroundColor: Colours.darkBackground,
+                            bottomSheetHeight: MediaQuery.of(context).size.height * .6,
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                            textStyle: GoogleFonts.poppins(
+                              color: Colours.light
+                            ),
+                            searchTextStyle: GoogleFonts.poppins(
+                              color: Colours.light
+                            ),
+                            inputDecoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Search',
+                              hintStyle: GoogleFonts.poppins(
+                                color: Colours.lightGrey
+                              ),
+                              hintText: 'Search'
+                            )
+                          ),
+                        );
+                      },
+                      child: Text(
+                        '+62',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          color: Colours.darkBackground,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                  ),
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 5
