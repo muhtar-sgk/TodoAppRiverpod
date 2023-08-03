@@ -6,17 +6,18 @@ import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:riverpod_todoapp/features/authentication/app/country_code_provider.dart';
 
 class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final border =
-        OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(16)
-        );
+    final border = OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(16)
+    );
+    final code = ref.watch(countryCodeProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -52,7 +53,10 @@ class SignInScreen extends ConsumerWidget {
                       onTap: (){
                         showCountryPicker(
                           context: context, 
-                          onSelect: (code){},
+                          onSelect: (code){
+                            ref.read(countryCodeProvider.notifier)
+                            .changeCountry(code);
+                          },
                           countryListTheme: CountryListThemeData(
                             backgroundColor: Colours.darkBackground,
                             bottomSheetHeight: MediaQuery.of(context).size.height * .6,
@@ -75,11 +79,14 @@ class SignInScreen extends ConsumerWidget {
                         );
                       },
                       child: Text(
-                        '+62',
+                        code == null ? 'Pick a country' : '${code
+                          .flagEmoji}${code.phoneCode}',
                         style: GoogleFonts.poppins(
-                          fontSize: 18,
+                          fontSize: code == null ? 13 : 18,
                           color: Colours.darkBackground,
-                          fontWeight: FontWeight.bold
+                          fontWeight: code == null 
+                            ? FontWeight.normal
+                            : FontWeight.bold
                         ),
                       ),
                     ),
