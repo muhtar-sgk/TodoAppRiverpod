@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
-import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/features/authentication/views/sign_in_screen.dart';
 
 import '../../../../core/common/widgets/white_space.dart';

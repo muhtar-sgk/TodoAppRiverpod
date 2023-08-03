@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/firebase_options.dart';
 
@@ -10,8 +11,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
-  runApp(const MyApp());
+  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           title: 'Todo App',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
+              colorScheme:
+                  ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
               scaffoldBackgroundColor: Colours.darkBackground,
               useMaterial3: true),
           home: const OnBoardingScreen(),

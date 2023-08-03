@@ -1,19 +1,17 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
-import 'package:riverpod_todoapp/features/authentication/controller/authentication_controller.dart';
-import 'package:riverpod_todoapp/features/authentication/views/otp_verification_screen.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final border =
         OutlineInputBorder(
           borderSide: BorderSide.none,
@@ -58,7 +56,7 @@ class SignInScreen extends StatelessWidget {
                           countryListTheme: CountryListThemeData(
                             backgroundColor: Colours.darkBackground,
                             bottomSheetHeight: MediaQuery.of(context).size.height * .6,
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                             textStyle: GoogleFonts.poppins(
                               color: Colours.light
                             ),
@@ -66,7 +64,7 @@ class SignInScreen extends StatelessWidget {
                               color: Colours.light
                             ),
                             inputDecoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: const OutlineInputBorder(),
                               labelText: 'Search',
                               hintStyle: GoogleFonts.poppins(
                                 color: Colours.lightGrey
