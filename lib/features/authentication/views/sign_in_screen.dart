@@ -1,14 +1,19 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:riverpod_todoapp/core/utils/core_utils.dart';
 import 'package:riverpod_todoapp/features/authentication/app/country_code_provider.dart';
 
-class SignInScreen extends ConsumerWidget {
+import '../controller/authentication_controller.dart';
+
+class SignInScreen extends HookConsumerWidget {
   const SignInScreen({super.key});
 
   @override
@@ -18,6 +23,7 @@ class SignInScreen extends ConsumerWidget {
       borderRadius: BorderRadius.circular(16)
     );
     final code = ref.watch(countryCodeProvider);
+    final phoneController = useTextEditingController();
 
     return Scaffold(
       body: SafeArea(
@@ -44,6 +50,8 @@ class SignInScreen extends ConsumerWidget {
                   fontSize: 18,
                   color: Colours.darkBackground,
                   fontWeight: FontWeight.w700),
+                controller: phoneController,
+                readOnly: code == null,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colours.light,
@@ -78,15 +86,20 @@ class SignInScreen extends ConsumerWidget {
                           ),
                         );
                       },
-                      child: Text(
-                        code == null ? 'Pick a country' : '${code
-                          .flagEmoji}${code.phoneCode}',
-                        style: GoogleFonts.poppins(
-                          fontSize: code == null ? 13 : 18,
-                          color: Colours.darkBackground,
-                          fontWeight: code == null 
-                            ? FontWeight.normal
-                            : FontWeight.bold
+                      child: Padding(
+                        padding: EdgeInsets.only(top: code == null ? 6.h : 2.h),
+                        child: Text(
+                          code == null ? 'Pick country' : '${code
+                            .flagEmoji} +${code.phoneCode} ',
+                          style: GoogleFonts.poppins(
+                            fontSize: code == null ? 13 : 18,
+                            color: code == null
+                              ? Colours.lightBlue
+                              : Colours.darkBackground,
+                            fontWeight: code == null 
+                              ? FontWeight.w500
+                              : FontWeight.bold
+                          ),
                         ),
                       ),
                     ),
@@ -102,7 +115,15 @@ class SignInScreen extends ConsumerWidget {
               const WhiteSpace(height: 30),
               RoundButton(
                 text: 'Send code',
-                onPressed: (){
+                onPressed: () async {
+                  if(code == null) return;
+                  final navigator = Navigator.of(context);
+                  CoreUtils.showLoader(context);
+                  await ref.read(authControllerProvider).sendOTP(
+                    context: context, 
+                    phoneNumber: '+${code.phoneCode}${phoneController.text}'
+                  );
+                  navigator.pop();
                 },
               )
             ],
