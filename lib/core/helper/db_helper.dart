@@ -35,4 +35,10 @@ class DBHelper {
       conflictAlgorithm: ConflictAlgorithm.replace
     );
   }
+
+  static Future<bool> userExists() async {
+    final localDb = await db();
+    final userData = await localDb.query('users');
+    return userData.isNotEmpty;
+  }
 }

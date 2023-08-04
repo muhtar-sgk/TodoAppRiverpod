@@ -1,14 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pinput/pinput.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/res/image_res.dart';
+import 'package:riverpod_todoapp/features/authentication/controller/authentication_controller.dart';
 
-class OTPVerificationScreen extends StatelessWidget {
-  const OTPVerificationScreen({super.key});
+import '../../../core/utils/core_utils.dart';
+
+class OTPVerificationScreen extends ConsumerWidget {
+  final String verificationId;
+
+  const OTPVerificationScreen({
+    super.key,
+    required this.verificationId
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -20,8 +31,15 @@ class OTPVerificationScreen extends StatelessWidget {
               const WhiteSpace(height: 26),
               Pinput(
                 length: 6,
-                onCompleted: (value) {
-                  debugPrint(value);
+                onCompleted: (pin) async {
+                  // final navigator = Navigator.of(context);
+                  CoreUtils.showLoader(context);
+                  await ref.read(authControllerProvider).verifyOTP(
+                    context: context, 
+                    verificationId: verificationId, 
+                    otp: pin
+                  );
+                  // navigator.pop();
                 },
                 defaultPinTheme: PinTheme(
                   padding: const EdgeInsets.symmetric(
