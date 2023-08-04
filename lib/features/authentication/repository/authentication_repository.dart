@@ -49,6 +49,10 @@ class AuthenticationRepository {
       smsCode: otp
     );
 
-    await auth.signInWithCredential(credential);
+    final userCredential = await auth.signInWithCredential(credential);
+
+    if(userCredential.user != null) {
+      
+    }
   }
 }
