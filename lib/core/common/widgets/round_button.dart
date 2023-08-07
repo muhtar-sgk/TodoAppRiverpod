@@ -6,11 +6,15 @@ import '../../res/colours.dart';
 class RoundButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
+  final Color? backgroundColor;
+  final Color? borderColor;
 
   const RoundButton({
     super.key,
     required this.text,
-    this.onPressed
+    this.onPressed, 
+    this.backgroundColor, 
+    this.borderColor
   });
 
   @override
@@ -18,10 +22,13 @@ class RoundButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colours.light,
+            backgroundColor: backgroundColor ?? Colours.light,
             minimumSize: Size(size.width * .9, size.height * .06),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)
+              borderRadius: BorderRadius.circular(12),
+              side: borderColor == null 
+                ? BorderSide.none
+                : BorderSide(color: borderColor!)
             )
           ),
           onPressed: onPressed, 
@@ -30,7 +37,7 @@ class RoundButton extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colours.darkBackground
+              color: borderColor ?? Colours.light
             ),
           )
         );

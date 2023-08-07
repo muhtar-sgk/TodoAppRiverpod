@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_todoapp/core/common/widgets/filled_field.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
@@ -18,10 +19,6 @@ class SignInScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final border = OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(16)
-    );
     final code = ref.watch(countryCodeProvider);
     final phoneController = useTextEditingController();
 
@@ -44,18 +41,11 @@ class SignInScreen extends HookConsumerWidget {
                     fontWeight: FontWeight.w500),
               ),
               const WhiteSpace(height: 20),
-              TextField(
+              FilledField(
                 keyboardType: TextInputType.phone,
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  color: Colours.darkBackground,
-                  fontWeight: FontWeight.w700),
                 controller: phoneController,
                 readOnly: code == null,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colours.light,
-                  prefixIcon: Padding(
+                prefixIcon: Padding(
                     padding: const EdgeInsets.only(top: 8, left: 14),
                     child: GestureDetector(
                       onTap: (){
@@ -104,13 +94,6 @@ class SignInScreen extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 5
-                  ),
-                  focusedBorder: border,
-                  enabledBorder: border,
-                )
               ),
               const WhiteSpace(height: 30),
               RoundButton(
