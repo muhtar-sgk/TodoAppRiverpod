@@ -37,6 +37,9 @@ class FilledField extends StatelessWidget {
             fontWeight: FontWeight.w700),
         controller: controller,
         readOnly: readOnly,
+        onTapOutside: (_){
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         decoration: InputDecoration(
           filled: true,
           fillColor: Colours.light,

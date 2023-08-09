@@ -1,9 +1,23 @@
+import 'package:riverpod_todoapp/features/todo/models/task_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
   const DBHelper._();
 
   static Future<void> createTables(Database database) async {
+    await database.execute('CREATE TABLE tasks ('
+      'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+      'title STRING, '
+      'description TEXT, '
+      'date STRING, '
+      'startTime STRING, '
+      'endTime STRING, '
+      'remind INTEGER, '
+      'repeat STRING, '
+      'isCompleted STRING'
+      ')'
+    );
+
     await database.execute('CREATE TABLE users ('
       'id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, '
       'isVerified INTEGER DEFAULT 0'
@@ -21,6 +35,58 @@ class DBHelper {
     );
   }
 
+  // TASKS
+  static Future<void> addTask(TaskModel task) async {
+    final localDb = await db();
+
+    await localDb.insert(
+      'tasks', 
+      task.toMap(), 
+      conflictAlgorithm: ConflictAlgorithm.replace
+    );
+  }
+
+  static Future<void> deleteTask(int taskId) async {
+    final localDb = await db();
+
+    await localDb.delete(
+      'tasks', 
+      where: "id = ?",
+      whereArgs: [taskId]
+    );
+  }
+
+  static Future<List<Map<String, dynamic>>> getTasks() async {
+    final localDb = await db();
+
+    return localDb.query('tasks', orderBy: 'id');
+  }
+
+  static Future<Map<String, dynamic>> getTaskById(int taskId) async {
+    final localDb = await db();
+
+    final tasks = await localDb.query(
+      'tasks', 
+      where: "id = ?",
+      whereArgs: [taskId],
+      limit: 1
+    );
+    if(tasks.isEmpty) return {};
+    return tasks.first;
+  }
+
+  static Future<void> updateTask(int taskId, {required TaskModel task}) async {
+    final localDb = await db();
+
+    await localDb.update(
+      'tasks', 
+      task.toMap(),
+      where: "id = ?",
+      whereArgs: [taskId]
+    );
+  }
+
+  // USERS
   static Future<void> createUser({required bool isVerified}) async {
     final localDb = await db();
 

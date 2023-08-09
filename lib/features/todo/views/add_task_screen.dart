@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:riverpod_todoapp/core/common/widgets/filled_field.dart';
 import 'package:riverpod_todoapp/core/common/widgets/round_button.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
@@ -133,7 +132,15 @@ class AddTaskScreen extends HookConsumerWidget {
           ),
           const WhiteSpace(height: 20),
           RoundButton(
-            onPressed: () {},
+            onPressed: () {
+              if(titleController.text.trim().isNotEmpty &&
+                  descriptionController.text.trim().isNotEmpty &&
+                  dateProvider != null &&
+                  startProvider != null &&
+                  endProvider != null) {
+
+                  }
+            },
             text: 'Submit',
             backgroundColor: Colours.green,
             borderColor: Colours.light,
