@@ -10,6 +10,7 @@ import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/helper/db_helper.dart';
 import 'package:riverpod_todoapp/features/authentication/views/sign_in_screen.dart';
 import 'package:riverpod_todoapp/features/todo/views/add_task_screen.dart';
+import 'package:riverpod_todoapp/features/todo/widgets/active_tasks.dart';
 
 import '../../../core/res/colours.dart';
 
@@ -147,14 +148,17 @@ class HomeScreen extends HookWidget {
           const WhiteSpace(height: 20),
           SizedBox(
             height: screenHeight * .26,
-            child: TabBarView(
-              controller: tabController,
-              children: const [
-                ColoredBox(color: Colors.red),
-                ColoredBox(color: Colors.blue),
-              ]
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: TabBarView(
+                controller: tabController,
+                children: const [
+                  ActiveTasks(),
+                  ColoredBox(color: Colors.blue),
+                ]
+              ),
             ),
-          )
+          ),
         ],
       )),
     );

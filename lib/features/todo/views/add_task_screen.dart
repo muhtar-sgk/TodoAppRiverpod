@@ -10,6 +10,8 @@ import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/core/utils/core_utils.dart';
 import 'package:riverpod_todoapp/features/todo/app/task_date_provider.dart';
+import 'package:riverpod_todoapp/features/todo/app/task_provider.dart';
+import 'package:riverpod_todoapp/features/todo/models/task_model.dart';
 
 class AddTaskScreen extends HookConsumerWidget {
   const AddTaskScreen({super.key});
@@ -132,13 +134,32 @@ class AddTaskScreen extends HookConsumerWidget {
           ),
           const WhiteSpace(height: 20),
           RoundButton(
-            onPressed: () {
+            onPressed: () async {
               if(titleController.text.trim().isNotEmpty &&
                   descriptionController.text.trim().isNotEmpty &&
                   dateProvider != null &&
                   startProvider != null &&
                   endProvider != null) {
-
+                    final title = titleController.text.trim();
+                    final description = descriptionController.text.trim();
+                    final date = dateProvider;
+                    final startTime = startProvider;
+                    final endTime = endProvider;
+                    final navigator = Navigator.of(context);
+                    CoreUtils.showLoader(context);
+                    await ref.read(taskProvider.notifier).addTask(TaskModel(
+                      title: title,
+                      description: description,
+                      date: date,
+                      startTime: startTime,
+                      endTime: endTime
+                    ));
+                    navigator..pop()..pop();
+                  } else {
+                    CoreUtils.showSnackBar(
+                      context: context, 
+                      message: 'All fields are required'
+                    );
                   }
             },
             text: 'Submit',

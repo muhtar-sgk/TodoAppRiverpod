@@ -13,7 +13,7 @@ class DBHelper {
       'startTime STRING, '
       'endTime STRING, '
       'remind INTEGER, '
-      'repeat STRING, '
+      'repeat INTEGER, '
       'isCompleted STRING'
       ')'
     );
@@ -75,14 +75,14 @@ class DBHelper {
     return tasks.first;
   }
 
-  static Future<void> updateTask(int taskId, {required TaskModel task}) async {
+  static Future<void> updateTask(TaskModel task) async {
     final localDb = await db();
 
     await localDb.update(
       'tasks', 
       task.toMap(),
       where: "id = ?",
-      whereArgs: [taskId]
+      whereArgs: [task.id]
     );
   }
 
