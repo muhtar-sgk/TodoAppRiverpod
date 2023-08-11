@@ -16,6 +16,7 @@ import 'package:riverpod_todoapp/features/todo/widgets/active_tasks.dart';
 
 import '../../../core/res/colours.dart';
 import '../widgets/completed_tasks.dart';
+import '../widgets/tasks_for_tomorrow.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
@@ -164,6 +165,10 @@ class HomeScreen extends HookConsumerWidget {
               ),
             ),
           ),
+          const WhiteSpace(height: 20),
+          const TasksForTomorrow(),
+          const WhiteSpace(height: 20),
+          // TasksForDayAfterTomorrow()
         ],
       )),
     );
