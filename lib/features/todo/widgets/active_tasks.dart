@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_todoapp/core/res/colours.dart';
 import 'package:riverpod_todoapp/features/todo/app/task_provider.dart';
+import 'package:riverpod_todoapp/features/todo/utils/todo_utils.dart';
 import 'package:riverpod_todoapp/features/todo/widgets/todo_tile.dart';
 
 class ActiveTasks extends ConsumerWidget {
@@ -12,7 +13,7 @@ class ActiveTasks extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tasks = ref.watch(taskProvider);
     return FutureBuilder(
-      future: ,
+      future: TodoUtils.getActiveTasksForToday(tasks),
       builder: (_, snapshot) {
         debugPrint(snapshot.data.toString());
         if(snapshot.hasData && snapshot.data != null) {

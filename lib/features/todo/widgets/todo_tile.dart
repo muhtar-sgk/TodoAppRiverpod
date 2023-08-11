@@ -78,6 +78,7 @@ class TodoTile extends StatelessWidget {
                             ),
                           ),
                           const WhiteSpace(width: 20),
+                          
                           IconButton(
                             onPressed: onEdit, 
                             icon: Icon(

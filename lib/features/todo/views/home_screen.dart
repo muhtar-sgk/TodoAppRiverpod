@@ -5,20 +5,22 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_todoapp/core/common/widgets/filled_field.dart';
 import 'package:riverpod_todoapp/core/common/widgets/white_space.dart';
 import 'package:riverpod_todoapp/core/helper/db_helper.dart';
 import 'package:riverpod_todoapp/features/authentication/views/sign_in_screen.dart';
+import 'package:riverpod_todoapp/features/todo/app/task_provider.dart';
 import 'package:riverpod_todoapp/features/todo/views/add_task_screen.dart';
 import 'package:riverpod_todoapp/features/todo/widgets/active_tasks.dart';
 
 import '../../../core/res/colours.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
@@ -26,7 +28,9 @@ class HomeScreen extends HookWidget {
     final tabTextStyle = GoogleFonts.poppins(
         fontSize: 16,
         color: Colours.darkBackground,
-        fontWeight: FontWeight.bold);
+        fontWeight: FontWeight.bold
+    );
+    ref.read(taskProvider.notifier).refresh();
 
     return Scaffold(
       appBar: AppBar(
