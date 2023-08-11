@@ -13,8 +13,13 @@ import 'package:riverpod_todoapp/features/todo/app/task_date_provider.dart';
 import 'package:riverpod_todoapp/features/todo/app/task_provider.dart';
 import 'package:riverpod_todoapp/features/todo/models/task_model.dart';
 
-class AddTaskScreen extends HookConsumerWidget {
-  const AddTaskScreen({super.key});
+class AddOrEditTaskScreen extends HookConsumerWidget {
+  final TaskModel? task;
+
+  const AddOrEditTaskScreen({
+    super.key,
+    this.task
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

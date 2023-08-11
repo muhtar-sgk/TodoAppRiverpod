@@ -76,7 +76,7 @@ class HomeScreen extends HookConsumerWidget {
                           Navigator.push(
                             context, 
                             MaterialPageRoute(
-                              builder: (_) => const AddTaskScreen()
+                              builder: (_) => const AddOrEditTaskScreen()
                             )
                           );
                         },
