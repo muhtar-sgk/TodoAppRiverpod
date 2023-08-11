@@ -14,6 +14,7 @@ class TodoTile extends StatelessWidget {
   final VoidCallback? onDelete;
   final Widget endIcon;
   final double? bottomMargin;
+  final Color? colour;
 
   const TodoTile(
     this.task, {
@@ -21,7 +22,8 @@ class TodoTile extends StatelessWidget {
       this.onEdit, 
       this.onDelete, 
       required this.endIcon,
-      this.bottomMargin
+      this.bottomMargin,
+      this.colour
       }
     );
 
@@ -43,7 +45,7 @@ class TodoTile extends StatelessWidget {
                 height: 80.h,
                 width: 5.w,
                 decoration: BoxDecoration(
-                  color: Colours.randomColour(),
+                  color: colour ?? Colours.randomColour(),
                   borderRadius: BorderRadius.circular(12)
                 ),
               ),
@@ -66,7 +68,6 @@ class TodoTile extends StatelessWidget {
                       fontSize: 12,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    
                     const WhiteSpace(height: 10),
                     Row(
                       children: [
