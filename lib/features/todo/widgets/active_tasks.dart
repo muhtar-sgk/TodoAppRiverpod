@@ -36,12 +36,15 @@ class ActiveTasks extends ConsumerWidget {
                 final task = snapshot.data![index];
                 return TodoTile(
                   task,
-                  endIcon: Switch(
-                    value: task.isCompleted,
-                    onChanged: (_) {
-                      task.isCompleted = true;
-                      ref.read(taskProvider.notifier).markAsCompleted(task);
-                    },
+                  endIcon: Transform.scale(
+                    scale: 0.8,
+                    child: Switch(
+                      value: task.isCompleted,
+                      onChanged: (_) {
+                        task.isCompleted = true;
+                        ref.read(taskProvider.notifier).markAsCompleted(task);
+                      },
+                    ),
                   ),
                 );
               }

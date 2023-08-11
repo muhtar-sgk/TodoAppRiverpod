@@ -21,7 +21,7 @@ class TodoTile extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: Colours.lightGrey,
             borderRadius: BorderRadius.circular(12)
@@ -40,66 +40,76 @@ class TodoTile extends StatelessWidget {
                     ),
                   ),
                   const WhiteSpace(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FadingText(
-                        task.title!,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      const WhiteSpace(height: 3),
-                      FadingText(task.description!, fontSize: 12),
-                      const WhiteSpace(height: 10),
-                      endIcon,
-                      Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 3.h
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colours.darkBackground,
-                              border: Border.all(
-                                width: .3,
-                                color: Colours.darkGrey
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * .6
+                        ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadingText(
+                          task.title!,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        const WhiteSpace(height: 3),
+                        FadingText(
+                          task.description!, 
+                          fontSize: 12,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        
+                        const WhiteSpace(height: 10),
+                        Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 3.h
                               ),
-                              borderRadius: BorderRadius.circular(12)
-                            ),
-                            child: Center(
-                              child: Text(
-                                '${task.startTime!.timeOnly} | ${task.endTime!.timeOnly}',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 12,
-                                  color: Colours.light
+                              decoration: BoxDecoration(
+                                color: Colours.darkBackground,
+                                border: Border.all(
+                                  width: .3,
+                                  color: Colours.darkGrey
+                                ),
+                                borderRadius: BorderRadius.circular(12)
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '${task.startTime!.timeOnly} | ${task.endTime!.timeOnly}',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: Colours.light
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const WhiteSpace(width: 20),
-                          
-                          IconButton(
-                            onPressed: onEdit, 
-                            icon: Icon(
-                              MaterialCommunityIcons.circle_edit_outline,
-                              color: Colours.light,
+                            // const WhiteSpace(width: 20),
+                            if(!task.isCompleted)
+                            IconButton(
+                              onPressed: onEdit, 
+                              icon: Icon(
+                                MaterialCommunityIcons.circle_edit_outline,
+                                color: Colours.light,
+                              )
+                            ),
+                            // const WhiteSpace(width: 20),
+                            IconButton(
+                              onPressed: onDelete, 
+                              icon: Icon(
+                                MaterialCommunityIcons.delete_circle,
+                                color: Colours.light,
+                              )
                             )
-                          ),
-                          const WhiteSpace(width: 20),
-                          IconButton(
-                            onPressed: onDelete, 
-                            icon: Icon(
-                              MaterialCommunityIcons.delete_circle,
-                              color: Colours.light,
-                            )
-                          )
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   )
                 ],
-              )
+              ),
+              endIcon,
             ],
           ),
         )
