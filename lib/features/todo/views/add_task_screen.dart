@@ -13,7 +13,7 @@ import 'package:riverpod_todoapp/features/todo/app/task_date_provider.dart';
 import 'package:riverpod_todoapp/features/todo/app/task_provider.dart';
 import 'package:riverpod_todoapp/features/todo/models/task_model.dart';
 
-class AddOrEditTaskScreen extends HookConsumerWidget {
+class AddOrEditTaskScreen extends StatefulHookConsumerWidget {
   final TaskModel? task;
 
   const AddOrEditTaskScreen({
@@ -22,9 +22,27 @@ class AddOrEditTaskScreen extends HookConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final titleController = useTextEditingController();
-    final descriptionController = useTextEditingController();
+  ConsumerState<AddOrEditTaskScreen> createState() => _AddOrEditTaskScreenState();
+}
+
+class _AddOrEditTaskScreenState extends ConsumerState<AddOrEditTaskScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if(widget.task != null) {
+        ref.read(taskDateProvider.notifier).changeDate(widget.task!.date!);
+        ref.read(taskStartTimeProvider.notifier).changeTime(widget.task!.startTime!);
+        ref.read(taskEndTimeProvider.notifier).changeTime(widget.task!.endTime!);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final titleController = useTextEditingController(text: widget.task?.title);
+    final descriptionController = useTextEditingController(text: widget.task?.description);
     final dateNotifier = ref.read(taskDateProvider.notifier);
     final startTimeNotifier = ref.read(taskStartTimeProvider.notifier);
     final endTimeNotifier = ref.read(taskEndTimeProvider.notifier);
@@ -152,13 +170,21 @@ class AddOrEditTaskScreen extends HookConsumerWidget {
                     final endTime = endProvider;
                     final navigator = Navigator.of(context);
                     CoreUtils.showLoader(context);
-                    await ref.read(taskProvider.notifier).addTask(TaskModel(
+                    final task = TaskModel(
+                      id: widget.task?.id,
+                      repeat: widget.task == null ? true : widget.task!.repeat,
+                      remind: widget.task == null ? true : widget.task!.remind,
                       title: title,
                       description: description,
                       date: date,
                       startTime: startTime,
                       endTime: endTime
-                    ));
+                    );
+                    if(widget.task != null) {
+                      await ref.read(taskProvider.notifier).updateTask(task); 
+                    } else {
+                      await ref.read(taskProvider.notifier).addTask(task);
+                    }
                     navigator..pop()..pop();
                   } else {
                     CoreUtils.showSnackBar(
