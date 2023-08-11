@@ -51,6 +51,7 @@ class TodoTile extends StatelessWidget {
                       const WhiteSpace(height: 3),
                       FadingText(task.description!, fontSize: 12),
                       const WhiteSpace(height: 10),
+                      endIcon,
                       Row(
                         children: [
                           Container(
@@ -94,12 +95,10 @@ class TodoTile extends StatelessWidget {
                           )
                         ],
                       ),
-
                     ],
                   )
                 ],
-              ),
-              endIcon
+              )
             ],
           ),
         )

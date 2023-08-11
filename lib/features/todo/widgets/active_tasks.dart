@@ -10,8 +10,9 @@ class ActiveTasks extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tasks = ref.watch(taskProvider);
     return FutureBuilder(
-      future: ref.watch(taskProvider.notifier).getActiveTasksForToday(),
+      future: ,
       builder: (_, snapshot) {
         debugPrint(snapshot.data.toString());
         if(snapshot.hasData && snapshot.data != null) {
@@ -37,7 +38,8 @@ class ActiveTasks extends ConsumerWidget {
                   endIcon: Switch(
                     value: task.isCompleted,
                     onChanged: (_) {
-                      
+                      task.isCompleted = true;
+                      ref.read(taskProvider.notifier).markAsCompleted(task);
                     },
                   ),
                 );
